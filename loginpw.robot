@@ -17,6 +17,7 @@ ${app-url}    https://secure.powershop.com.au/customers/172466/balance
 # &{login-headers}    Create Dictionary    Accept=*/*
 ${accept-header}    text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
 &{login-headers}    Accept=${accept-header}
+&{login-data}    email=ora.jelas@outlook.com    password=JennyLonte123    commit=Login
 
 
 *** Test Cases ***
@@ -39,8 +40,8 @@ Bypass Login
     # &{res}=    Http    ${login-url}    GET
     # Http    ${login-url}    method=GET
     #### ${res}=    GET    ${login-url}    headers=${login-headers}
-    ${res}=    POST    ${login-url}    headers=${login-headers}
-    # Log    ${res}
+    ${res}=    POST    ${login-url}    data=${login-data}    headers=${login-headers}
+    Log    ${res}
     Sleep    3s
     # New Page
 
