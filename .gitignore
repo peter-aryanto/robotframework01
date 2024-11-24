@@ -7,3 +7,7 @@ report.html
 
 */traces
 playwright-log.txt
+
+__pycache__
+*.exe
+user-data

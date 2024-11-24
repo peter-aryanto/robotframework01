@@ -7,7 +7,8 @@ Library    Browser
 Library    RequestsLibrary
 Suite Setup    New Browser    browser=chromium    headless=False
 Suite Teardown    Close Browser
-Test Setup    New Context
+# Test Setup    New Context
+# Test Teardown    Close Context
 
 *** Variables ***
 # ${login-url}    https://identity-retail-saiverglobal.dynamic.aieos.ai/testing/testlogin
@@ -22,8 +23,8 @@ ${accept-header}    text/html,application/xhtml+xml,application/xml;q=0.9,image/
 
 *** Test Cases ***
 Valid Login
-    [Setup]    Bypass Login
-    # Open Browser To Landing Page
+    # [Setup]    Bypass Login
+    Open Browser To Landing Page
     Sleep    3s
     # Type In Username
     # Type In Password
@@ -39,15 +40,18 @@ Bypass Login
     # Http    ${login-url}    GET    None    headers={"x-testing-auth-bypass": "aad:peter.aryanto@cleardynamics.com"}
     # &{res}=    Http    ${login-url}    GET
     # Http    ${login-url}    method=GET
-    #### ${res}=    GET    ${login-url}    headers=${login-headers}
-    ${res}=    POST    ${login-url}    data=${login-data}    headers=${login-headers}
-    Log    ${res}
+    ${res}=    GET    ${login-url}    headers=${login-headers}
+    # ${res}=    POST    ${login-url}    data=${login-data}    headers=${login-headers}
+    # Log    ${res}
     Sleep    3s
     # New Page
 
-# Open Browser To Landing Page
-#     New Page    ${app-url}
-#     Get Title    contains    Compare Retail - New New Sign Up
+Open Browser To Landing Page
+    New Page    ${app-url}
+    # Get Title    contains    Compare Retail - New New Sign Up
+    ${page-title}=    Get Title
+    log to console    message=
+    log to console    ${page-title}
 
 # Type In Username
 #     Sleep    3s
