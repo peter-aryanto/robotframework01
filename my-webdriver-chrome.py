@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import os
 
 
-def create_webdriver_options_chrome():
+def create_webdriver_options_chrome(detached=None):
     o = webdriver.ChromeOptions()
     # o.add_argument("--no-sandbox") # ERROR:direct_composition_support.cc(1034)] QueryInterface to IDCompositionDevice4 failed: No such interface supported (0x80004002)
     o.add_argument("disable-extensions")
@@ -18,6 +18,11 @@ def create_webdriver_options_chrome():
 
     # o.binary_location = "C:\Program Files\Google\Chrome\Application\chrome.exe"
     o.binary_location = "C:/Program Files/Google/Chrome/Application/chrome.exe" # The above also works!
+
+    # if detached is True:
+    if detached is not None:
+        o.add_experimental_option("detach", True)
+
     return o
 
 
