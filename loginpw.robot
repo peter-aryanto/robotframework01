@@ -1,3 +1,8 @@
+# To keep browser open: https://forum.robotframework.org/t/how-to-keep-the-browser-open-during-development/6447
+# *** Settings ***
+# Library    Browser    auto_closing_level=manual
+
+
 *** Settings ***
 Library    Browser    jsextension=${CURDIR}/my-js-utils.js
 
